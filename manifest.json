@@ -1,0 +1,13 @@
+{
+  "name": "IdeaScale Exporter",
+  "description": "App to export data from IdeaScale consultations.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "permissions": [ "http://ideas.ideascale.com/*", "storage"],
+  "icons": { "32": "ideascale_32.png", "128": "ideascale_128.png" }
+}
