@@ -3,12 +3,7 @@ function log(append, msg) {
   buffer.innerHTML = (append) ? buffer.innerHTML + msg : msg;
 }
 
-var alldata = "";
-var page = 0;
-var nideas = 0;
-var size = 100;
-
-function httpGet(theUrl, key){
+function httpGet(theUrl, key, getsize){
   var http = new XMLHttpRequest();
   http.open("GET", theUrl, true);
   http.setRequestHeader('api_token', key);
@@ -17,21 +12,22 @@ function httpGet(theUrl, key){
 
     if (http.readyState == 4)
       if (http.status == 200){
-        result = JSON.parse(http.responseText);
 
-        if (result.length > 0){
-          nideas += result.length;
-          alldata += JSON.stringify(result, null, 4);
-          page += 1;
-          theUrl = "http://ideas.ideascale.com/a/rest/v1/ideas/top/"+ page +"/"+ size;
-          httpGet(theUrl, key);
+        var nideas = http.getResponseHeader("pager_total_count");
+
+        if (getsize) { // ignore data
+          log(false, 'Gathering <b>'+ nideas +'</b> ideas, please wait.<br><img src="ajax-loader.gif">');
+          var theUrl = "http://ideas.ideascale.com/a/rest/v1/ideas/top/0/"+ nideas;
+          httpGet(theUrl, key, false);
         }
-        else
+        else // parse data
         {
+          var result = JSON.parse(http.responseText);
+
+          var alldata = JSON.stringify(result, null, 4);
           document.querySelector('#get').disabled = false;
-          log(false, "Found <b>"+ nideas +"</b> ideas<br>");
           var filename = "IdeaScale-"+ new Date().getTime() +".json";
-          log(true, '<a href="data:application/json;charset=utf8,' + encodeURIComponent(alldata) + '" id="jsonfile" download="'+ filename +'" title="Download data!" target="_blank">Save as JSON file</a><br>');
+          log(false, 'Found <b>'+ nideas +'</b> ideas<br><a href="data:application/json;charset=utf8,' + encodeURIComponent(alldata) + '" id="jsonfile" download="'+ filename +'" title="Download data!" target="_blank">Save as JSON file</a><br>');
 
           document.querySelector('#jsonfile').addEventListener('click', function() { log(true, filename + " saved!") });
         }
@@ -49,9 +45,9 @@ function httpGet(theUrl, key){
 }
 
 function getIdeas(key){
-  theUrl = "http://ideas.ideascale.com/a/rest/v1/ideas/top/"+ page +"/"+ size;
-  log(false, 'Gathering ideas, please wait.<br><img src="ajax-loader.gif">');
-  httpGet(theUrl, key);
+  theUrl = "http://ideas.ideascale.com/a/rest/v1/ideas/top/0/1";
+  log(false, '<img src="ajax-loader.gif">');
+  httpGet(theUrl, key, true);
 }
 
 document.querySelector('#help').addEventListener('click', function() {
