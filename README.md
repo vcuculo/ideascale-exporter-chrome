@@ -15,6 +15,11 @@ Click on `Load unpacked extension` and select ideascale-exporter-chrom folder.
 
    http://goo.gl/tbOfzn
 
+## References
+
+[PDF] [Analysis of public consultation on the
+fundamental principles of the Internet](http://www.vcuculo.com/upload/articolo_consultazione_eng.pdf)
+
 ### Donate
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/vcuculo/)
