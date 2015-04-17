@@ -1,4 +1,4 @@
-# Ideascale Exporter for Google Chrome
+# IdeaScale Exporter for Google Chrome
 This extension provides an export tool to easily retrieve all the ideas from a campaign in JSON format.  
 The application adopts the [IdeaScale REST API](http://support.ideascale.com/customer/portal/articles/1001563-ideascale-rest-api), and requires an [API Token](http://ideascale.com/a/profile/api-tokens) related to a specific campaign.
 

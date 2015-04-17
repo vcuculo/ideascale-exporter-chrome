@@ -2,11 +2,9 @@
 <head>
 <style type="text/css"> 
 body { 
-  background-color: #b4d347;
-  //font: 16px Tahoma, Helvetica, Arial, Sans-Serif;
+  background-color: #5b5b5b;
   font: 16px Arial, Helvetica, Geneva, sans-serif;
-  color: black;
-  //text-shadow: 0px 2px 1px #bbbaba;
+  color: #fff;
   width: 650px;
 }
 
@@ -52,19 +50,23 @@ button[disabled] {
 }
 .title {
   font: bold 20px Arial, Helvetica, Geneva, sans-serif;
-  text-shadow: 0px 0px 5px white;
+  text-shadow: 0px 0px 5px #000;
 }
+a {
+  color: #80c4c0;
+}
+
 </style>
 </head>
 <body>
-<img src="ideascale_128.png" style="width:64px;vertical-align:middle">
+<img src="logo.png" style="width:64px;vertical-align:middle;">
 <span class="title">IdeaScale Exporter</span>
 <div id="main" align="center">
 Insert your <a href="#" id="help">API token</a>:<br>
 <input type="text" id="key" size="30" style="text-align:center">
 <button type="button" id="get"> Get Data </button>
 <br>
-<input type="checkbox" id="remember">remember my token</input>
+<label><input type="checkbox" id="remember">remember my token</label>
 </div>
 <br>
 <div id="buffer" align="center"/>
